@@ -11,4 +11,19 @@ evaluación, pig sera eejcutado ejecutado en modo local:
 $ pig -x local -f pregunta.pig
 
      >>> Escriba el codigo del mapper a partir de este punto <<<
+
+
+Pregunta_2 = LOAD 'data.tsv' USING PigStorage ('\t') AS (letter:CHARARRAY, date:CHARARRAY, value:int);
+Sorted = ORDER Pregunta_2 BY letter,value asc;
+STORE Sorted INTO 'output' USING PigStorage (',');
 */
+
+TblPregunta = LOAD 'data.tsv' USING PigStorage('\t')
+    AS (
+            letra:chararray,
+            fecha:chararray,
+            valor:int
+    );
+
+Ordenado = ORDER TblPregunta BY letra, valor asc;
+STORE Ordenado INTO 'output' USING PigStorage(',');
