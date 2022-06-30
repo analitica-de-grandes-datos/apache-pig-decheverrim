@@ -18,6 +18,10 @@ evaluación, pig sera eejcutado ejecutado en modo local:
 
 $ pig -x local -f pregunta.pig
 
-        /* >>> Escriba su respuesta a partir de este punto <<< */
+        >>> Escriba su respuesta a partir de este punto <<<
 */
+Pregunta_16 = LOAD 'data.csv' USING PigStorage(',') AS (id:CHARARRAY, name:CHARARRAY, last_name:CHARARRAY, date:CHARARRAY, color:CHARARRAY, value:int);
+Select_colors = FOREACH Pregunta_16 GENERATE name, color;
+Select_colors_filter = FILTER Select_colors BY (name MATCHES '.*^[K].*') OR (color MATCHES 'blue');
 
+STORE Select_colors_filter INTO 'output' USING PigStorage(',');
