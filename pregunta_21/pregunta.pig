@@ -26,3 +26,4 @@ Select_colors = FOREACH Pregunta_21 GENERATE name, color;
 Select_colors_filter = FILTER Select_colors BY (color MATCHES 'blue|green');
 
 STORE Select_colors_filter INTO 'output' USING PigStorage(',');
+
