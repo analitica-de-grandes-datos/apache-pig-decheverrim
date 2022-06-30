@@ -24,5 +24,5 @@ Pregunta_15 = LOAD 'data.csv' USING PigStorage(',') AS (id:CHARARRAY, name:CHARA
 Select_colors = FOREACH Pregunta_15 GENERATE name, color;
 Select_colors_filter = FILTER Select_colors BY (name MATCHES '.*^[Z].*') AND (color MATCHES 'blue');
 
-STORE Select_colors_filter INTO 'output' USING PigStorage('\t');
+STORE Select_colors_filter INTO 'output' USING PigStorage(' ');
 
