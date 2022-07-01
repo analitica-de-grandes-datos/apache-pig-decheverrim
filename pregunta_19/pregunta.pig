@@ -25,6 +25,6 @@ $ pig -x local -f pregunta.pig
 
 Pregunta_19 = LOAD 'data.csv' USING PigStorage(',') AS (id:CHARARRAY, name:CHARARRAY, last_name:CHARARRAY, date:CHARARRAY, color:CHARARRAY, value:int);
 Select_colors = FOREACH Pregunta_19 GENERATE name, color;
-Select_colors_filter = FILTER Select_colors BY NOT (color MATCHES '^b.*');
+Select_colors_filter = FILTER Select_colors BY (color MATCHES '^b.*');
 
 STORE Select_colors_filter INTO 'output' USING PigStorage(',');
