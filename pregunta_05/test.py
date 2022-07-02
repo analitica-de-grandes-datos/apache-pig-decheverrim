@@ -8,13 +8,13 @@ os.chdir(module_path)
 
 
 expected = [
-    "a,22",
+    "a,23",
     "b,12",
     "c,17",
-    "d,13",
+    "d,14",
     "e,15",
-    "f,25",
-    "g,9",
+    "f,26",
+    "g,10",
 ]
 
 if os.path.isdir("output"):

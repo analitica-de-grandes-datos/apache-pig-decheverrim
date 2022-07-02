@@ -19,4 +19,8 @@ $ pig -x local -f pregunta.pig
         >>> Escriba su respuesta a partir de este punto <<<
 */
 
+Pregunta_24 = LOAD 'data.csv' USING PigStorage(',') AS (id:CHARARRAY, name:CHARARRAY, last_name:CHARARRAY, date:CHARARRAY, color:CHARARRAY, value:int);
 
+Select_colors_regex = FOREACH Pregunta_24 GENERATE REGEX_EXTRACT(date, '(.*{4})-(.*{2})-(.*{2})', 2);
+
+STORE Select_colors_regex INTO 'output' USING PigStorage(',');

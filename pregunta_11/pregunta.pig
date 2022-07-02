@@ -33,3 +33,9 @@ $ pig -x local -f pregunta.pig
         >>> Escriba su respuesta a partir de este punto <<<
 */
 
+Pregunta_11 = LOAD 'data.csv' USING PigStorage(',') AS (id:CHARARRAY, name:CHARARRAY, last_name:CHARARRAY, date:CHARARRAY, color:CHARARRAY, value:int);
+Select_column = FOREACH Pregunta_11 GENERATE last_name;
+Select_column_transform = FOREACH Select_column GENERATE last_name,UPPER(last_name),LOWER(last_name);
+Select_column_transform_order = ORDER Select_column_transform BY last_name;
+STORE Select_column_transform_order INTO 'output' USING PigStorage(',');
+
